@@ -129,11 +129,11 @@ git push -u origin main
 3. Click "New repository secret"
 4. Add these secrets one by one:
 
-| Name | Value |
-|------|-------|
-| `AWS_ACCESS_KEY_ID` | Your AWS access key ID |
-| `AWS_SECRET_ACCESS_KEY` | Your AWS secret access key |
-| `S3_BUCKET_NAME` | Your S3 bucket name |
+| Name                         | Value                                      |
+| ---------------------------- | ------------------------------------------ |
+| `AWS_ACCESS_KEY_ID`          | Your AWS access key ID                     |
+| `AWS_SECRET_ACCESS_KEY`      | Your AWS secret access key                 |
+| `S3_BUCKET_NAME`             | Your S3 bucket name                        |
 | `CLOUDFRONT_DISTRIBUTION_ID` | Your CloudFront distribution ID (if using) |
 
 ---
@@ -158,11 +158,13 @@ git push
 ## Accessing Your Deployed App
 
 ### Via S3 (if no CloudFront):
+
 ```
 http://YOUR_BUCKET_NAME.s3-website-REGION.amazonaws.com
 ```
 
 ### Via CloudFront (recommended):
+
 ```
 https://YOUR_DISTRIBUTION_ID.cloudfront.net
 ```
@@ -172,20 +174,24 @@ https://YOUR_DISTRIBUTION_ID.cloudfront.net
 ## Troubleshooting
 
 ### Build fails
+
 - Check Node.js version compatibility
 - Run `npm ci` and `npm run build` locally first
 
 ### Deployment fails
+
 - Verify AWS credentials in GitHub secrets
 - Check IAM user has correct permissions
 - Ensure S3 bucket name is correct
 
 ### Website shows 404
+
 - Check S3 static hosting is enabled
 - Verify bucket policy allows public access
 - For CloudFront, check error response configuration
 
 ### Changes don't appear
+
 - CloudFront caches content. Wait for invalidation to complete
 - Can take 5-15 minutes for CloudFront to update
 
@@ -216,8 +222,8 @@ https://YOUR_DISTRIBUTION_ID.cloudfront.net
 Add this to your `.github/workflows/deploy.yml` before the build step:
 
 ```yaml
-      - name: Run tests
-        run: npm test -- --passWithNoTests
+- name: Run tests
+  run: npm test -- --passWithNoTests
 ```
 
 ## Alternative: AWS Amplify (Easier Setup)
@@ -246,6 +252,7 @@ Done! Amplify handles everything automatically.
 ## Questions?
 
 Common workflow:
+
 1. Make code changes locally
 2. Test locally: `npm run dev`
 3. Commit and push to GitHub
