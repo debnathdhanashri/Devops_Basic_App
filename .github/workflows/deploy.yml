@@ -33,9 +33,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/react-app
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
             npm install
             npm run build
-            cp -r dist/* /var/www/react-app/
             sudo systemctl reload nginx
             echo "Deployment completed successfully!"
